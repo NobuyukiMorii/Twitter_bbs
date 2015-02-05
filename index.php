@@ -30,18 +30,24 @@ if(!empty($_POST)){
   }
 }
 //投稿を取得する
-$page = $_REQUEST['page'];
-if($page == ''){
-  $page = 1;
+if(isset($page)){
+  $page = $_REQUEST['page'];
+  if($page == ''){
+    $page = 1;
+  }
+  $page = max($page , 1);
 }
-$page = max($page , 1);
 
 //最終ページを取得する
 $sql = 'SELECT COUNT(*) AS cnt FROM posts';
 $recordSet = mysqli_query($db, $sql);
 $table = mysqli_fetch_assoc($recordSet);
 $maxPage = ceil($table['cnt'] / 5);
-$page = min($page , $maxPage);
+if(isset($page)){
+  $page = min($page , $maxPage);
+} else {
+  $page = min(1 , 1);
+}
 
 $start = ($page -1) * 5;
 $start = max(0 , $start);
