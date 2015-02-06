@@ -86,10 +86,10 @@ function makeLink($value){
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
 <meta http-equive="Content-Type" content="text/html"; charset="UTF-8" />
 <title>ひとこと掲示板</title>
-<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
 
 <body>
 <div id="wrap">
@@ -139,7 +139,7 @@ while($post = mysqli_fetch_assoc($posts)):
   <?php
   if($_SESSION['id'] === $post['member_id']):
   ?>
-  [<a href="delete.php?id=<?php echo h($post['id']) ;?>" style="color: #F33;">削除</a>]
+  [<a class='delete' style="color: #F33;" href="delete.php?id=<?php echo h($post['id']) ;?>">削除</a>]
   <?php
   endif;
   ?>
@@ -182,5 +182,14 @@ endwhile;
   </div>
 </div>
 </body>
+<script>
+$('.delete').click(function(e){
+  var res = confirm("本当に削除ししますか？");
 
+  if(res == false){
+    e.preventDefault();
+  }
+
+});
+</script>
 </html>
