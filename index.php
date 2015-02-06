@@ -67,7 +67,7 @@ if(isset($_REQUEST['res'])){
   );
   $record = mysqli_query($db ,$sql) or die(mysqli_error($db));
   $table = mysqli_fetch_assoc($record);
-  $message = '@' . $table['name'] . ' ' . $table['message'];
+  $message = '@' . $table['name'];
 }
 
 //htmlspecialcharsのショートカット
@@ -94,7 +94,7 @@ function makeLink($value){
 <body>
 <div id="wrap">
   <div id="head">
-    <h1>ひとこと掲示板</h1>
+    <img src="moritter.png" width="300" alt="(C) Nobutyuki Morii" />
   </div>
   <div id="content">
     <div style="text-align:right"><a href="logout.php">ログアウト</a></div>
@@ -102,11 +102,7 @@ function makeLink($value){
       <dl>
         <dt><?php echo h($member['name'])?>さん、メッセージをどうぞ</dt>
         <dd>
-          <textarea name="message" cols="50" rows="5">
-            <?php if(isset($message)): ?>
-              <?php  echo h($message); ?>
-            <?php endif; ?>
-          </textarea>
+          <textarea name="message" cols="50" rows="5"><?php if(isset($message)){echo h($message);}?></textarea>
           <?php if(isset($_REQUEST['res'])): ?>
             <input type="hidden" name="reply_post_id" value="<?php echo h($_REQUEST['res']); ?>" />
           <?php endif; ?>
@@ -182,9 +178,7 @@ endwhile;
 
   </ul>
 
-  </div>
-  <div id="foot">
-    <p><img src="moritter.png" width="300" alt="(C) Nobutyuki Morii" /></p>
+  <?PHP ECHO date('H:i:s'); ?>
   </div>
 </div>
 </body>
