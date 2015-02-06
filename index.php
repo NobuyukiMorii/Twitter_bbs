@@ -30,9 +30,13 @@ if(!empty($_POST)){
   }
 }
 //投稿を取得する
-$page = $_GET['page'];
-if(isset($page)){
+if(isset($_REQUEST['page'])){
   $page = $_REQUEST['page'];
+} else {
+  $page = 1;
+}
+
+if(isset($page)){
   if($page == ''){
     $page = 1;
   }
