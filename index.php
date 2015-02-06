@@ -30,6 +30,7 @@ if(!empty($_POST)){
   }
 }
 //投稿を取得する
+$page = $_GET['page'];
 if(isset($page)){
   $page = $_REQUEST['page'];
   if($page == ''){
@@ -159,7 +160,7 @@ endwhile;
   } else {
     echo '<li><a href="index.php?page=';
     echo $page - 1;
-    echo '\">前のページへ</a></li>';
+    echo '">前のページへ</a></li>';
   }
   ?>
 
@@ -171,7 +172,7 @@ endwhile;
   } else {
     echo '<li><a href="index.php?page=';
     echo $page + 1;
-    echo '\">次のページへ</a></li>';
+    echo '">次のページへ</a></li>';
   }
   ?>
 
